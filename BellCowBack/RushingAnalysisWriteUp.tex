@@ -1,0 +1,336 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Bring Back the Bell Cow Back?},
+            pdfauthor={Orrin Wheeler},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Bring Back the Bell Cow Back?}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{Analysis of the Bell Cow back on team wins in today's NFL}
+  \author{Orrin Wheeler}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{5/6/2019}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+
+\begin{document}
+\maketitle
+
+In today's NFL, there is a lot of discussion about the devaluation of
+the running back position and the death of the feature back. As more and
+more teams move to having a running back by committee approach, running
+backs like Todd Gurley and Zeke Elliott stand as the last monuments to
+the old school feature backs that take nearly all of the rushing
+attempts every game.
+
+In this analysis, we will take a look at what effect having a feature
+back on your team may have. The assumption is that having one of these
+great feature backs has a big positive effect on your team's rushing
+statistics which will hopefully translate to wins.
+
+We will take a look at data scraped from
+\href{https://www.pro-football-reference.com}{pro-football-reference.com}
+for the 2014 through 2018 regular seasons. We will take a look at the
+leading rushers on each team for each year and see what sort of effects
+having a feature back may have on overall team success.
+
+Note: If a player was traded mid-season and played for multiple teams in
+a given year, they can hardly be counted as a feature back so we will
+ignore these players and move to the next leading rushing on a team.
+
+For our reference, we will classify a leading rusher as a feature back
+if they took more than 65\% of the attempted rushes for their team in a
+given year.
+
+By this definition, we have 19 feature backs out of a possible 160
+between 2014 and 2018. Included in this list are the usual suspects of
+Elliott, Gurley, Peterson, Barkley and Bell among others.
+
+\begin{tabu} to \linewidth {>{\raggedright}X>{\raggedright}X>{\raggedleft}X>{\raggedright}X>{\raggedright}X>{\raggedleft}X>{\raggedright}X>{\raggedright}X>{\raggedright}X}
+\hline
+Player & Team & Year & Player & Team & Year & Player & Team & Year\\
+\hline
+David Johnson & Arizona Cardinals & 2016 & Ezekiel Elliott & Dallas Cowboys & 2018 & Latavius Murray & Oakland Raiders & 2015\\
+\hline
+David Johnson & Arizona Cardinals & 2018 & Frank Gore & Indianapolis Colts & 2015 & LeSean McCoy & Philadelphia Eagles & 2014\\
+\hline
+Matt Forte & Chicago Bears & 2014 & Kareem Hunt & Kansas City Chiefs & 2017 & Le'Veon Bell & Pittsburgh Steelers & 2014\\
+\hline
+Jordan Howard & Chicago Bears & 2016 & Melvin Gordon & Los Angeles Chargers & 2017 & Le'Veon Bell & Pittsburgh Steelers & 2017\\
+\hline
+Jordan Howard & Chicago Bears & 2017 & Todd Gurley & Los Angeles Rams & 2016 & Alfred Morris & Washington Redskins & 2014\\
+\hline
+Joe Mixon & Cincinnati Bengals & 2018 & Adrian Peterson & Minnesota Vikings & 2015 & NA & NA & \\
+\hline
+DeMarco Murray & Dallas Cowboys & 2014 & Saquon Barkley & New York Giants & 2018 & NA & NA & \\
+\hline
+\end{tabu}
+
+\hypertarget{rushing-by-year}{%
+\subsection{Rushing by year}\label{rushing-by-year}}
+
+For the past several seasons, we have seen a sharp increase in the
+importance of the passing game with the recent rules adjustments
+generally favoring the offense. That should generally coincide with the
+diminishing importance of the rushing game which may lead to lower
+rushing stats. Lets take a look!
+
+\includegraphics{RushingAnalysisWriteUp_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+As we can see here there is actually very little change year over year
+for rushing yards. If anything, rushing yardage is actually slightly
+increasing , however the relationship of the two is insignificant. This
+goes against the idea that the modern NFL running game is on the
+decline. This begs the question however, does an increase in team
+rushing yards actually lead to increased success? Perhaps there are
+simply teams that run more than others but that has no impact on the
+general win percentage of teams.
+
+\hypertarget{rushing-by-team}{%
+\subsection{Rushing by Team}\label{rushing-by-team}}
+
+First lets get a sense of which teams tend to run more. Teams like the
+Patriots, Steelers, and Seahawks are perennial playoff teams but do
+these teams tend to rush for more yards than other teams?
+
+To get a sense of which teams to look out for, lets take a look at the
+teams with the highest average win total. Generally 10 wins will get a
+team to a playoff spot so which teams have been averaging over 10 wins a
+year?
+
+Teams like the Patriots and Steelers are always in the playoffs but is
+this a result of a more effective running game?
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l|r}
+\hline
+Team & Average Wins\\
+\hline
+New England Patriots & 12.4\\
+\hline
+Kansas City Chiefs & 10.8\\
+\hline
+Pittsburgh Steelers & 10.8\\
+\hline
+Los Angeles Chargers & 10.5\\
+\hline
+Seattle Seahawks & 10.2\\
+\hline
+\end{tabular}
+\end{table}
+
+\includegraphics{RushingAnalysisWriteUp_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+Of the teams averaging over 10 wins per season the past 5 years, only
+the Seahawks are averaging more than 2000 yards rushing over that same
+time period. The Patriots, Steelers, and Chiefs all fall in the middle
+of the pack while the Chargers have been averaging one of the lowest
+rushing totals in the entire NFL over the past 5 years.
+
+\hypertarget{wins-by-team-rushing}{%
+\subsection{Wins by Team Rushing}\label{wins-by-team-rushing}}
+
+All of this doesn't look too good on our assumption that more yards from
+a team's bell cow back would result in more wins. If we compare a team's
+total rushing yards (across all rushing attempts) though we start to see
+a slightly different story.
+
+\includegraphics{RushingAnalysisWriteUp_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+Here we can see positive correlation between wins and total team rushing
+yards. The strength is still fairly weak (R\textsuperscript{2} =
+0.1419), but at this sample size, the correlation is statistically
+significant at the p \textless{} .01 level. With a slope of .004 we can
+estimate for for every additional 250 yards rushed, a team can expect an
+additional win. However, these are still total team rushing yards. The
+question we are asking is whether or not we see a significant increase
+in wins when a team utilizes a feature running back. So now let's dive
+down into player specific statistics.
+
+\hypertarget{wins-by-player-rushing}{%
+\subsection{Wins by player rushing}\label{wins-by-player-rushing}}
+
+First lets take a look simply at the number of wins as a function of how
+many yards the leading rusher gained.
+
+\includegraphics{RushingAnalysisWriteUp_files/figure-latex/unnamed-chunk-11-1.pdf}
+
+As we expect, we see a positive trend when estimating the expected
+number of wins by the number of rushing yards by the leading rusher on a
+team. Here for roughly every 355 yards gained by the leading rusher a
+given team can expect an additional win. This relationship is
+significant as well at the p \textless{} .05 level as well. So comparing
+to total team yards, we see a weaker effect but one that is still
+statistically significant, albeit at a lower confidence level.
+
+We need to be careful however because team rushing yards and leading
+rusher yards are highly correlated with a Pearson correlation
+coefficient of 0.568. Since these two fields are highly correlated we
+expect them to encode much of the same information. What we really care
+about for this analysis is does giving the featured running back a
+higher percentage of the workload result in more wins. To do this, we
+need to look at wins as a function of the percent of total team rushing
+yards that were gained by the leading rusher. Similarly we want to look
+at wins as a function of the percent of team rushing attempts taken by
+the leading rusher.
+
+\hypertarget{wins-by-player-rush-percentage}{%
+\subsection{Wins by Player Rush
+Percentage}\label{wins-by-player-rush-percentage}}
+
+As evidenced below, when you look at wins as a function of what
+percentage of yards the leading rusher gained for a team, we see a much
+weaker trend.
+
+\includegraphics{RushingAnalysisWriteUp_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+The trend is still positive, but with an extremely weak
+R\textsuperscript{2} = 0.0016. Looking further, we can see that this
+relationship is in no way significant with a p-value of 0.61. This
+distribution can be produced by and potentially is a result of
+randomness. Things look even more bleak when we compare wins to the
+player attempts percentage.
+
+\hypertarget{wins-by-player-attempt-percentage}{%
+\subsection{Wins by Player Attempt
+Percentage}\label{wins-by-player-attempt-percentage}}
+
+Recall from before that being a feature back is defined as having 65\%
+of your team's rushing attempts or greater so here we see a clear
+segregation of feature and non-feature backs.
+
+\includegraphics{RushingAnalysisWriteUp_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+Here we actually even see a slightly negative slope to our line
+indicating that one player taking a larger portion of a teams snaps may
+actually be detrimental to a teams success. This trend is very slight
+however and contains no statistical significance (p-value = 0.9123) so
+perhaps a more accurate statement would be that there is no trend
+positive or negative between the percentage of attempts taken by a given
+player and a the number of wins a team can expect in a given season.
+
+\hypertarget{so-what-can-we-say}{%
+\section{So what can we say?}\label{so-what-can-we-say}}
+
+After this analysis, it is safe to say that teams with a well performing
+running game can expect on average more wins in a season than a team who
+struggles to run the ball. This makes sense as the more rushing yards a
+team has, generally the more efficient their offense is and the more
+points they will score. All those factors make winning games much
+easier.
+
+What we cannot conclude though, is that all those rushing yards need to
+go through one person. The percentage of rushing yards and rushing
+attempts that go through one person seems to have no significant effect
+on the number of wins a team should expect in a season. So in all what
+this means is get your rushing yards however you can. Having a running
+back by committee would seem to be just as effective as having that one
+three down bell cow back that your offense runs through when it comes to
+expected added wins. There are other considerations such as:
+
+Does paying a feature back have a negative effect on the other talent a
+team can surround him with?
+
+How does having your leading rusher also be your QB effect the running
+game and subsequently wins?
+
+What type of back is most effective? i.e.~Hammer vs.~scat
+vs.~well-rounded running back
+
+These questions are outside the scope of this analysis but would all be
+questions well worth asking.
+
+If you've enjoyed this analysis, follow me on twitter @MrOhDubbs. Feel
+free to reach out with questions or with suggestions on what I should do
+a statistical dive on next!
+
+
+\end{document}
